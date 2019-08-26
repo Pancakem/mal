@@ -4,10 +4,10 @@ var fs = require('fs');
 // The first two arguments are: 'node' and 'bootstrap.js'
 // The third argument is the name of the Elm module to load.
 var args = process.argv.slice(2);
-// var mod = require('./' + args[0]);
-var mod = require("../src/stepA_mal.elm")
-var app = mod.Main.init({
-    args: args.slice(1)
+const {Elm} = require('../src/' + args[0] + ".elm");
+
+var app = Elm.Main.init({
+    flags: args.slice(1)
 });
 
 // Hook up the writeLine and readLine ports of the app.

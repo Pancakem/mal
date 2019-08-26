@@ -4,18 +4,15 @@ SOURCES = step0_repl.elm step1_read_print.elm step2_eval.elm \
 
 BINS = $(SOURCES:%.elm=%.js)
 
-ELM_MAKE = node_modules/.bin/elm-make
-ELM_PACKAGE = node_modules/.bin/elm-package
+ELM_MAKE = node_modules/.bin/elm make
+ELM_PACKAGE = node_modules/.bin/elm install
 
-all: node_modules elm_packages $(BINS)
+all: node_modules $(BINS)
 
 node_modules:
 	npm install
 
-elm_packages:
-	$(ELM_PACKAGE) install -y
-
-%.js: %.elm node_modules elm_packages
+%.js: %.elm node_modules
 	$(ELM_MAKE) $(@:%.js=%.elm) --output $@
 
 STEP0_SOURCES = IO.elm
